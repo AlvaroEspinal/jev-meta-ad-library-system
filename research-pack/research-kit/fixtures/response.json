@@ -1,0 +1,40 @@
+{
+  "model": "synthetic/fixture",
+  "answers": {
+    "journey_stage": {
+      "type": "choice",
+      "choice": "solution_aware",
+      "confidence": 1,
+      "probabilities": {
+        "unaware": 0,
+        "problem_aware": 0,
+        "solution_aware": 1,
+        "product_aware": 0,
+        "most_aware": 0,
+        "review": 0
+      }
+    },
+    "primary_angle": {
+      "type": "choice",
+      "choice": "process_mechanism",
+      "confidence": 1,
+      "probabilities": {
+        "offer_promo": 0,
+        "problem_pain": 0,
+        "fear_risk": 0,
+        "benefit_umbrella": 0,
+        "project_showcase": 0,
+        "before_after_transformation": 0,
+        "material_product_feature": 0,
+        "process_mechanism": 1,
+        "authority_expertise": 0,
+        "social_proof": 0,
+        "comparison": 0,
+        "status_lifestyle_design": 0,
+        "local_convenience": 0,
+        "other": 0,
+        "review": 0
+      }
+    }
+  }
+}

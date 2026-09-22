@@ -1,0 +1,19 @@
+Jev Friend System — Private Collaborator License
+
+Copyright (c) 2026 Alvaro Espinal. All rights reserved except as stated below.
+
+The repository owner grants each person directly invited to this private
+repository permission to clone, run, inspect, and modify the original Jev
+Friend System code for that person's own internal research and evaluation.
+This includes configuring the system with that person's own accounts and data.
+Redistribution, public hosting, sublicensing, and commercial resale of the
+original Jev Friend System code require the owner's separate written consent.
+
+This grant does not restrict third-party components supplied under their own
+licenses. In particular, Browser Use Jev Ultrafast-derived files remain under
+their MIT license and copyright notice in browser_runner/vendor/ and licenses/.
+
+THE ORIGINAL JEV FRIEND SYSTEM CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM ITS USE.

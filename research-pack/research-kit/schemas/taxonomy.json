@@ -1,0 +1,88 @@
+{
+  "schema_version": "jev-cockpit-taxonomy/1",
+  "provenance": {
+    "source": "jev-ultrafast/scripts/run_creative_enrichment_pilot.py",
+    "source_sha256": "8b12e8aa63eda27c5d87766122e3832ad43c7dec7e7f9c1dd6d198921c7e0169",
+    "method": "AST literal extraction; no source execution",
+    "snapshot_date": "2026-09-22"
+  },
+  "awareness": {
+    "unaware": "The prospect is not consciously thinking about the problem yet. The ad uses story, surprise, news, a dramatic claim, or a pattern interrupt to create problem awareness and does not lead with the advertiser's product.",
+    "problem_aware": "The prospect already feels or recognizes the problem but does not yet know a solution. The ad leads with vivid pain, empathy, a question, or a threat and then teases that a solution exists.",
+    "solution_aware": "The prospect knows solution categories exist and is comparing approaches. The ad leads with a category benefit, method, differentiation, or comparison to alternatives.",
+    "product_aware": "The prospect knows this advertiser or offering but needs proof, a product-specific reason, an objection handled, a testimonial, or a reason to choose it now.",
+    "most_aware": "The prospect already wants the specific offering and mainly needs price, an offer, urgency, availability, a promotion, or a direct low-friction action.",
+    "review": "Captured evidence is insufficient or genuinely ambiguous; do not guess."
+  },
+  "angles": {
+    "offer_promo": {
+      "label": "Offer / promo",
+      "criteria": "Price, discount, promotion, financing, bonus, or special offer is the dominant appeal."
+    },
+    "problem_pain": {
+      "label": "Problem / pain",
+      "criteria": "The prospect's current problem, frustration, or pain is the dominant appeal."
+    },
+    "fear_risk": {
+      "label": "Fear / risk",
+      "criteria": "Risk, loss, a costly mistake, danger, or a negative consequence is the dominant appeal."
+    },
+    "benefit_umbrella": {
+      "label": "Benefit umbrella",
+      "criteria": "A broad desirable outcome or bundle of benefits is the dominant appeal."
+    },
+    "project_showcase": {
+      "label": "Project showcase",
+      "criteria": "A completed design, room, or project reveal is the dominant appeal."
+    },
+    "before_after_transformation": {
+      "label": "Before / after transformation",
+      "criteria": "A before-and-after transformation is the dominant appeal."
+    },
+    "material_product_feature": {
+      "label": "Material / product feature",
+      "criteria": "A material, named product, construction detail, or feature is dominant."
+    },
+    "process_mechanism": {
+      "label": "Process / mechanism",
+      "criteria": "How the service, design process, or mechanism works is the dominant appeal."
+    },
+    "authority_expertise": {
+      "label": "Authority / expertise",
+      "criteria": "Credentials, experience, technical expertise, or authority is dominant."
+    },
+    "social_proof": {
+      "label": "Social proof",
+      "criteria": "A testimonial, review, customer result, or peer proof is dominant."
+    },
+    "comparison": {
+      "label": "Comparison",
+      "criteria": "A comparison between choices, alternatives, providers, or paths is dominant."
+    },
+    "status_lifestyle_design": {
+      "label": "Status / lifestyle / design",
+      "criteria": "Taste, identity, status, aesthetics, aspiration, or lifestyle is dominant."
+    },
+    "local_convenience": {
+      "label": "Local / convenience",
+      "criteria": "Local relevance, proximity, service area, speed, or convenience is dominant."
+    },
+    "other": {
+      "label": "Other",
+      "criteria": "There is a clear dominant persuasive angle outside this taxonomy."
+    },
+    "review": {
+      "label": "Review required",
+      "criteria": "Captured evidence is insufficient or genuinely ambiguous; do not guess."
+    }
+  },
+  "legacy_mapping": {
+    "journey_stage": "awareness; NOT funnel"
+  },
+  "funnel_extension": {
+    "top": "Discovery / attention objective",
+    "middle": "Consideration / evaluation objective",
+    "bottom": "Conversion / direct action objective",
+    "review": "Insufficient evidence; no forced mapping"
+  }
+}

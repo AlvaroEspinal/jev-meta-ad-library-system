@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kit_version": "1.0.0",
+  "files": {
+    "EXCLUSIONS.md": "c8ef09333ed8a66999768d5c53b5c511e7b0a13850209fbd1f975edcefa9c206",
+    "README.md": "856c73a0d983d7b0f9c4eb5f524d8a0864c6cb59ef80bc1bd88ae7664cd0604a",
+    "docs/architecture.md": "7078d6020929dd5571e76d9ce231c54e76b028c7d9555bf04a38edf3e9490e3c",
+    "docs/decision-contract.md": "7f353b1b193948f3872411122b48aa9b7a12d548352cfc51693fa76d653a5a4b",
+    "docs/evaluation.md": "95e95d00bfe78822955b76e1c094e0d9a9dee7c3d049d6f6d7b0ff8852022357",
+    "docs/glossary.md": "1d695df943a41600305dc1c3ddeadd4e28cfabad6e830f1c9957c81ed3e1ccc6",
+    "docs/marketing.md": "0e97b2107b0a119d89275b896b84e9d7a52980b4b9b8afdc36f3281be1acbb93",
+    "docs/prompts.md": "7c07de03cc795115a3f42ecac73a455f3d0edb991f9083bbc19f41396d6c6006",
+    "docs/research.md": "48b792a6364eab3844dfd45a493c38d94c8d18daf7548393f2618feda2c2beef",
+    "docs/setup.md": "e27a3801f091715b002b1880d73dc379d4c539bcd99247ac56b7c7e832a2ff95",
+    "docs/source-policy.md": "27601e85ef26563c68ac03c5b5ff080f94e0035c122cf3d8799c4de928bfa1ab",
+    "docs/sources.md": "8c4b1ea03f5b9b721a1a7b4517ea072795edfcba195489efc6c19a9b09ff7bf3",
+    "fixtures/ad-record.json": "648520d17e9c8fc7f8f13fde684c5b21f318829cb9ed29f146ee449ab113a730",
+    "fixtures/request.json": "4ae146a93cc65f338279166178a3a45e470486eb6fe27155f35bdadf046b22ad",
+    "fixtures/response.json": "d59f6ad344fd2177b508a330730ae5bd6ff306e466817733711306248dd65398",
+    "schemas/record.schema.json": "cf473adaa25ead14773c2da9a91f8a39906cc0adf841ac408608971b3e78150e",
+    "schemas/taxonomy.json": "29ca92c74f70f0a0118718b9c0700a9487398f4cab96c071606d85ba25bd0bf9",
+    "scripts/demo.py": "75ab78e156737a7a002b4e94b8bb3f78c63c4a2405419382d6992c2d16ea5e75",
+    "scripts/jev_contract.py": "a88cd764c61a528ca6c1b04a6494ac4ae3c71af4fad9db3242f82a7ef7454ad1",
+    "scripts/replay.py": "4fe4ef1587cec6344065b1d2925aec03b2d9a511014d09fc942a31f3e18e2c03",
+    "scripts/test_kit.py": "fe2459274cd4ca0d951ab6120e73c6ba75e28712b7b6cae67319045464bbddc8",
+    "scripts/verify.py": "95611ef986180784d2d3d38e828091275ca2eed47bb55fc68f15c5350ba6a23a"
+  }
+}

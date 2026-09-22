@@ -1,0 +1,10 @@
+{
+  "friend_pack": "1.0.0",
+  "research_kit": "1.0.0",
+  "extension": "0.2.1",
+  "capture_base_commit": "0e92f254b0bd00f89e0da35713ed140d35d6e4e0",
+  "distribution_source_commit": "3c0f9ffc243c831c825690c6a47a8fe0b9a524dc",
+  "source_strategy": "Pinned tested capture baseline plus generic friend-pack overlays; unfinished runtime experiments excluded",
+  "native_host": "com.jev.research_capture",
+  "live_acceptance": false
+}

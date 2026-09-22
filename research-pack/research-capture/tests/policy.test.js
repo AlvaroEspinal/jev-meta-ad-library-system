@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+import {classify,cleanURL,redact} from '../extension/policy.js';
+test('Instagram and subdomains are handoff only',()=>{for(const u of ['https://instagram.com/a','https://www.instagram.com/p/x','https://x.instagram.com/a'])assert.equal(classify(u),'instagram_handoff');});
+test('URL strips credentials and tracking',()=>{assert.equal(cleanURL('https://youtube.com/watch?v=abc&token=secret#foo'),'https://youtube.com/watch?v=abc');assert.throws(()=>cleanURL('https://user:secret@example.com'));});
+test('Meta limited to library',()=>{assert.throws(()=>classify('https://facebook.com/messages'));assert.equal(classify('https://facebook.com/ads/library/?id=1'),'meta_ad_library');});
+test('No ambient privileges or network',()=>{const m=JSON.parse(fs.readFileSync(new URL('../extension/manifest.json',import.meta.url)));assert.deepEqual(m.permissions,['activeTab','scripting','nativeMessaging','storage']);assert.equal(m.host_permissions,undefined);assert.equal(m.content_scripts,undefined);assert.equal(m.background,undefined);assert.match(m.content_security_policy.extension_pages,/connect-src 'none'/);});
+test('redacts likely secrets',()=>assert.equal(redact('password=hello'),'[REDACTED]'));
+test('extraction has hard Instagram stop before DOM access',()=>{const s=fs.readFileSync(new URL('../extension/extract.js',import.meta.url),'utf8');assert.ok(s.indexOf("throw Error('Instagram")<s.indexOf('document.'));assert.doesNotMatch(s,/fetch\(|\.click\(|document\.cookie|localStorage|XMLHttpRequest/);});
+test('Trailing-dot Instagram hostname cannot bypass handoff',()=>assert.equal(classify('https://www.instagram.com./p/test/'),'instagram_handoff'));
+test('Meta library prefix impostor fails',()=>assert.throws(()=>classify('https://facebook.com/ads/library-private')));

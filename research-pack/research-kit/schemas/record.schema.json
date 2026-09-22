@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable ad evidence record (structural minimum; run replay for typed judgments)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "source_url",
+    "captured_at",
+    "status",
+    "evidence",
+    "classification",
+    "telemetry"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "jev-ad-research/1"
+    },
+    "status": {
+      "enum": [
+        "captured",
+        "partial",
+        "failed"
+      ]
+    },
+    "primary_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "headline": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subheadline": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cta": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "classification": {
+      "type": "object",
+      "properties": {
+        "journey_stage": {
+          "enum": [
+            "unaware",
+            "problem_aware",
+            "solution_aware",
+            "product_aware",
+            "most_aware",
+            "review"
+          ]
+        },
+        "primary_angle": {
+          "enum": [
+            "offer_promo",
+            "problem_pain",
+            "fear_risk",
+            "benefit_umbrella",
+            "project_showcase",
+            "before_after_transformation",
+            "material_product_feature",
+            "process_mechanism",
+            "authority_expertise",
+            "social_proof",
+            "comparison",
+            "status_lifestyle_design",
+            "local_convenience",
+            "other",
+            "review"
+          ]
+        },
+        "funnel_stage": {
+          "enum": [
+            "top",
+            "middle",
+            "bottom",
+            "review"
+          ]
+        },
+        "accepted": {
+          "type": "boolean"
+        },
+        "review_required": {
+          "type": "boolean"
+        },
+        "outcome_verified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "required": [
+        "model",
+        "provider",
+        "cost"
+      ],
+      "properties": {
+        "cost": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "network_calls": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# Local credentials, state, evidence and runtime output
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.sqlite
+*.sqlite3
+*.db
+state/
+evidence/
+output/
+runs/
+artifacts/
+*.log
+*.pid
+.DS_Store
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+node_modules/
+dist/
+build/
+*.egg-info/

@@ -1,0 +1,76 @@
+{
+  "schema_version": "jev-ad-research/1",
+  "id": "synthetic-ad-001",
+  "advertiser": "Example Workshop (synthetic)",
+  "company_category": "home_remodeling",
+  "source_url": "https://example.com/ad/fixture-001",
+  "captured_at": "2026-09-22T00:00:00Z",
+  "status": "captured",
+  "primary_text": "A clearer renovation process. Review a written plan before work begins. Book a planning call.",
+  "headline": "Know the plan before work begins",
+  "subheadline": null,
+  "cta": "Book a planning call",
+  "landing_page_url": "https://example.com/planning",
+  "format": "text",
+  "evidence": [
+    {
+      "id": "ad.primary_text",
+      "field": "primary_text",
+      "text": "A clearer renovation process. Review a written plan before work begins. Book a planning call."
+    },
+    {
+      "id": "lp.heading",
+      "field": "landing.headline",
+      "text": "Start with a written renovation plan"
+    }
+  ],
+  "landing": {
+    "status": "captured",
+    "headline": "Start with a written renovation plan",
+    "subheadline": null,
+    "offer": "Planning call",
+    "cta": "Request a planning call",
+    "proof": null,
+    "structure": [
+      "headline",
+      "offer",
+      "cta"
+    ],
+    "claims": [
+      "Written plan before work begins"
+    ],
+    "source_url": "https://example.com/planning"
+  },
+  "classification": {
+    "mode": "synthetic_replay",
+    "journey_stage": "solution_aware",
+    "primary_angle": "process_mechanism",
+    "funnel_stage": "review",
+    "secondary_angles": [],
+    "hook": "A clearer renovation process.",
+    "offer": "Planning call",
+    "proof": null,
+    "authority": null,
+    "objection": null,
+    "benefit": "Clarity before work",
+    "fear": null,
+    "comparison": null,
+    "ad_landing_match": "matched",
+    "evidence_ids": [
+      "ad.primary_text",
+      "lp.heading"
+    ],
+    "accepted": false,
+    "review_required": true,
+    "outcome_verified": false
+  },
+  "telemetry": {
+    "model": "synthetic/fixture",
+    "provider": "offline",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 0,
+    "cost": 0,
+    "network_calls": 0
+  }
+}

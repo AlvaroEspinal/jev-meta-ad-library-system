@@ -1,0 +1,203 @@
+{
+  "ok": true,
+  "tested_payload_sha256": "b678830aa207e57fc02f555bc98e9e7ff1893cc67c365ee56d273f2a475d89b4",
+  "version": {
+    "friend_pack": "1.0.0",
+    "research_kit": "1.0.0",
+    "extension": "0.2.1",
+    "capture_base_commit": "0e92f254b0bd00f89e0da35713ed140d35d6e4e0",
+    "distribution_source_commit": "3c0f9ffc243c831c825690c6a47a8fe0b9a524dc",
+    "source_strategy": "Pinned tested capture baseline plus generic friend-pack overlays; unfinished runtime experiments excluded",
+    "native_host": "com.jev.research_capture",
+    "live_acceptance": false
+  },
+  "checks": [
+    {
+      "command": "python3 tools/verify.py --strict",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "{\n  \"ok\": true,\n  \"files_checked\": 75,\n  \"errors\": [],\n  \"strict\": true,\n  \"network_calls\": 0\n}\n"
+    },
+    {
+      "command": "shasum -a 256 -c SHA256SUMS",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "\nresearch-capture/scripts/verify_artifacts.py: OK\nresearch-capture/scripts/verify_workflow_fixtures.py: OK\nresearch-capture/scripts/workflow.py: OK\nresearch-capture/scripts/workflow_fixtures.py: OK\nresearch-capture/tests/extract.test.js: OK\nresearch-capture/tests/fixtures/meta.html: OK\nresearch-capture/tests/fixtures/web.html: OK\nresearch-capture/tests/fixtures/youtube.html: OK\nresearch-capture/tests/policy.test.js: OK\nresearch-capture/tests/popup.test.js: OK\nresearch-capture/tests/test_core.py: OK\nresearch-capture/tests/test_jev_client.py: OK\nresearch-capture/tests/test_media.py: OK\nresearch-capture/tests/test_workflows.py: OK\nresearch-kit/EXCLUSIONS.md: OK\nresearch-kit/MANIFEST.json: OK\nresearch-kit/README.md: OK\nresearch-kit/docs/architecture.md: OK\nresearch-kit/docs/decision-contract.md: OK\nresearch-kit/docs/evaluation.md: OK\nresearch-kit/docs/glossary.md: OK\nresearch-kit/docs/marketing.md: OK\nresearch-kit/docs/prompts.md: OK\nresearch-kit/docs/research.md: OK\nresearch-kit/docs/setup.md: OK\nresearch-kit/docs/source-policy.md: OK\nresearch-kit/docs/sources.md: OK\nresearch-kit/fixtures/ad-record.json: OK\nresearch-kit/fixtures/request.json: OK\nresearch-kit/fixtures/response.json: OK\nresearch-kit/schemas/record.schema.json: OK\nresearch-kit/schemas/taxonomy.json: OK\nresearch-kit/scripts/demo.py: OK\nresearch-kit/scripts/jev_contract.py: OK\nresearch-kit/scripts/replay.py: OK\nresearch-kit/scripts/test_kit.py: OK\nresearch-kit/scripts/verify.py: OK\ntools/check-offline.py: OK\ntools/jev-call.py: OK\ntools/test_setup.py: OK\ntools/verify-zip.py: OK\ntools/verify.py: OK\nMANIFEST.json: OK\n"
+    },
+    {
+      "command": "python3 research-kit/scripts/verify.py",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "{\n  \"ok\": true,\n  \"files_checked\": 22,\n  \"checks\": [\n    \"sha256\",\n    \"symlink/path containment\",\n    \"secret/PII patterns\",\n    \"relative Markdown links\"\n  ],\n  \"errors\": [],\n  \"network_calls\": 0\n}\n"
+    },
+    {
+      "command": "python3 research-kit/scripts/replay.py --request research-kit/fixtures/request.json --response research-kit/fixtures/response.json --out replay-output.json",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "replay_validated\n"
+    },
+    {
+      "command": "python3 research-kit/scripts/demo.py --out demo-output",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "Synthetic report saved; network_calls=0\n"
+    },
+    {
+      "command": "python3 research-kit/scripts/test_kit.py",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.002s\n\nOK\n"
+    },
+    {
+      "command": "python3 tools/jev-call.py --request research-kit/fixtures/request.json --output jev-dry-run.json",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "{\n  \"schema_version\": \"jev-decision/2\",\n  \"status\": \"dry_run\",\n  \"timestamp\": \"2026-09-22T14:42:22.206804+00:00\",\n  \"endpoint\": \"https://openrouter.ai/api/alpha/decisions\",\n  \"provider\": \"openrouter\",\n  \"requested_model\": \"~typesafe/jev-latest\",\n  \"resolved_model\": null,\n  \"response_id\": null,\n  \"expected_model\": null,\n  \"request_sha256\": \"54bf598ced585c23a71cac57e970bb9107a39d4bf998c31572a334ca31bd1d13\",\n  \"state_sha256\": \"785d048303f319205edf0dd36ed03dec95f5754427584f026cc87cc19503231c\",\n  \"questions_sha256\": \"27617f458c490d1ff59b1544cd7bcb5dff3e53e9956ce77860eac187c8d824f8\",\n  \"request_bytes\": 3238,\n  \"question_names\": [\n    \"journey_stage\",\n    \"primary_angle\"\n  ],\n  \"task_class\": \"friend-research\",\n  \"question_set_version\": \"reviewed-v1\",\n  \"policy_version\": \"review-only/v1\",\n  \"disposition\": \"not_checked\",\n  \"validated\": false,\n  \"accepted\": false,\n  \"review_required\": true,\n  \"attempt_count\": 0,\n  \"http_status\": null,\n  \"latency_ms\": null,\n  \"answers\": null,\n  \"usage\": null,\n  \"cost_usd\": null,\n  \"usage_status\": \"unknown\",\n  \"outcome_verified\": false\n}\n"
+    },
+    {
+      "command": "python3 tools/check-offline.py",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "See offline_checks",
+      "offline_checks": {
+        "ok": true,
+        "checks": [
+          {
+            "cwd": "research-capture",
+            "command": "npm ci --ignore-scripts --prefer-offline --no-audit --no-fund",
+            "exit_code": 0,
+            "tests": null,
+            "output_tail": "\nadded 39 packages in 466ms\n"
+          },
+          {
+            "cwd": "research-capture",
+            "command": "python3 -m unittest discover -s tests -v",
+            "exit_code": 0,
+            "tests": 66,
+            "output_tail": "\ntest_symlink_download_root (test_workflows.ExtraGuards.test_symlink_download_root) ... ok\ntest_valid_shadow_import_keeps_review (test_workflows.ExtraGuards.test_valid_shadow_import_keeps_review) ... ok\ntest_instagram_denied_before_network (test_workflows.LandingTest.test_instagram_denied_before_network) ... ok\ntest_private_denied_before_network (test_workflows.LandingTest.test_private_denied_before_network) ... ok\ntest_static_no_script_no_inferred_claims (test_workflows.LandingTest.test_static_no_script_no_inferred_claims) ... ok\ntest_adapter_path_escape (test_workflows.WorkflowsTest.test_adapter_path_escape) ... ok\ntest_approved_external_instagram_import (test_workflows.WorkflowsTest.test_approved_external_instagram_import) ... ok\ntest_complete_record_asset_readback (test_workflows.WorkflowsTest.test_complete_record_asset_readback) ... ok\ntest_download_does_not_create_vault_and_collision_safe (test_workflows.WorkflowsTest.test_download_does_not_create_vault_and_collision_safe) ... ok\ntest_download_not_enabled (test_workflows.WorkflowsTest.test_download_not_enabled) ... ok\ntest_duplicate_and_changed_creative (test_workflows.WorkflowsTest.test_duplicate_and_changed_creative) ... ok\ntest_failed_adapter_is_not_success (test_workflows.WorkflowsTest.test_failed_adapter_is_not_success) ... ok\ntest_instagram_requires_external_adapter_no_network (test_workflows.WorkflowsTest.test_instagram_requires_external_adapter_no_network) ... ok\ntest_landing_inaccessible (test_workflows.WorkflowsTest.test_landing_inaccessible) ... ok\ntest_model_failure_visible (test_workflows.WorkflowsTest.test_model_failure_visible) ... ok\ntest_native_workflow_origin (test_workflows.WorkflowsTest.test_native_workflow_origin) ... ok\ntest_no_arbitrary_native_paths (test_workflows.WorkflowsTest.test_no_arbitrary_native_paths) ... ok\ntest_off_zero_calls (test_workflows.WorkflowsTest.test_off_zero_calls) ... ok\ntest_partial_missing_field (test_workflows.WorkflowsTest.test_partial_missing_field) ... ok\ntest_real_local_mp3 (test_workflows.WorkflowsTest.test_real_local_mp3) ... ok\ntest_request_all_dimensions_and_canonical (test_workflows.WorkflowsTest.test_request_all_dimensions_and_canonical) ... ok\ntest_tampered_duplicate_rejected (test_workflows.WorkflowsTest.test_tampered_duplicate_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 66 tests in 0.555s\n\nOK\n"
+          },
+          {
+            "cwd": "research-capture",
+            "command": "npm test",
+            "exit_code": 0,
+            "tests": 19,
+            "output_tail": "\n> test\n> node --test tests/*.test.js\n\n\u2714 Web extraction excludes form/editor/hidden evidence (102.365833ms)\n\u2714 YouTube visible identity, transcript and media reference (12.016917ms)\n\u2714 Meta isolates a single visible ad and copy roles (12.880958ms)\n\u2714 Meta ambiguity fails rather than combining ads (10.443209ms)\n\u2714 Instagram stops even if DOM getters would throw (0.103167ms)\n\u2714 Instagram and subdomains are handoff only (1.208875ms)\n\u2714 URL strips credentials and tracking (0.316375ms)\n\u2714 Meta limited to library (0.174167ms)\n\u2714 No ambient privileges or network (0.908875ms)\n\u2714 redacts likely secrets (0.256167ms)\n\u2714 extraction has hard Instagram stop before DOM access (0.191125ms)\n\u2714 Trailing-dot Instagram hostname cannot bypass handoff (0.065333ms)\n\u2714 Meta library prefix impostor fails (0.096958ms)\n\u2714 Popup manual save and surfaced receipt use native host (82.974333ms)\n\u2714 Popup preview is explicit and editable (31.790917ms)\n\u2714 Instagram active page never autofills or captures (30.116625ms)\n\u2714 External pasted Instagram reference does not read page or download (57.059833ms)\n\u2714 Quick Download uses separate native workflow (29.875291ms)\n\u2714 Missing companion surfaces failure (28.171375ms)\n\u2139 tests 19\n\u2139 suites 0\n\u2139 pass 19\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 635.218625\n"
+          },
+          {
+            "cwd": "research-capture",
+            "command": "python3 scripts/fixture_receipts.py",
+            "exit_code": 0,
+            "tests": null,
+            "output_tail": "{\"ok\": true, \"status\": \"captured\", \"id\": \"6af5b4c7324f414c396fb9ed19658628\", \"note\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/6af5b4c7324f414c396fb9ed19658628/note.md\", \"manifest\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/6af5b4c7324f414c396fb9ed19658628/manifest.json\", \"gaps\": [], \"sha256\": \"6af5b4c7324f414c396fb9ed196586282653582d50d25b4cc21afc5990c13095\"}\n{\"ok\": true, \"status\": \"captured\", \"id\": \"33a9bcca42edcbd829072393a86cc3fb\", \"note\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/33a9bcca42edcbd829072393a86cc3fb/note.md\", \"manifest\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/33a9bcca42edcbd829072393a86cc3fb/manifest.json\", \"gaps\": [], \"sha256\": \"33a9bcca42edcbd829072393a86cc3fb1f41278d008eabd64b8b8f3d797ffef5\"}\n{\"ok\": true, \"status\": \"captured\", \"id\": \"dcfbe07ba3abc54ffec29e7ad5108803\", \"note\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/dcfbe07ba3abc54ffec29e7ad5108803/note.md\", \"manifest\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/dcfbe07ba3abc54ffec29e7ad5108803/manifest.json\", \"gaps\": [], \"sha256\": \"dcfbe07ba3abc54ffec29e7ad51088037e851ba1488cfe935ddc3575304e0960\"}\n{\"ok\": true, \"status\": \"partial\", \"id\": \"0ee17f12fd4bb4c959d738c5effc8ba5\", \"note\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/0ee17f12fd4bb4c959d738c5effc8ba5/note.md\", \"manifest\": \"/private<TEMP>/pack/research-capture/artifacts/fixture-vault/0ee17f12fd4bb4c959d738c5effc8ba5/manifest.json\", \"gaps\": [\"Instagram URL handoff retained locally; approved non-browser route not invoked. Requires explicit scraper approval.\"], \"sha256\": \"0ee17f12fd4bb4c959d738c5effc8ba562acdc57d6f18c5c03e5751dfcee9802\"}\n"
+          },
+          {
+            "cwd": "research-capture",
+            "command": "python3 scripts/verify_artifacts.py artifacts/fixture-vault",
+            "exit_code": 0,
+            "tests": null,
+            "output_tail": "{\n  \"result\": \"PASS\",\n  \"records_checked\": 4,\n  \"failures\": [],\n  \"limits\": \"Hash, containment and note evidence checks; does not independently establish source truth or Chrome execution.\"\n}\n"
+          },
+          {
+            "cwd": "research-capture",
+            "command": "python3 scripts/workflow_fixtures.py",
+            "exit_code": 0,
+            "tests": null,
+            "output_tail": "/private<TEMP>/pack/research-capture/artifacts/workflow-fixtures\n"
+          },
+          {
+            "cwd": "research-capture",
+            "command": "python3 scripts/verify_workflow_fixtures.py artifacts/workflow-fixtures",
+            "exit_code": 0,
+            "tests": null,
+            "output_tail": "{\n  \"ok\": true,\n  \"unique_packages_checked\": 6,\n  \"cases_checked\": 9,\n  \"errors\": [],\n  \"checks\": [\n    \"file hashes\",\n    \"path containment\",\n    \"source separation\",\n    \"statuses\",\n    \"off-mode cost\",\n    \"review flags\",\n    \"quick download readback\"\n  ],\n  \"limits\": \"Synthetic receipt/hash checks, not source truth, Chrome execution or provider inference\"\n}\n"
+          },
+          {
+            "cwd": ".",
+            "command": "python3 tools/test_setup.py",
+            "exit_code": 0,
+            "tests": 6,
+            "output_tail": "test_dry_run_no_writes (__main__.SetupTests.test_dry_run_no_writes) ... ok\ntest_install_uninstall_restorable_custom_paths (__main__.SetupTests.test_install_uninstall_restorable_custom_paths) ... ok\ntest_missing_vault_refused (__main__.SetupTests.test_missing_vault_refused) ... ok\ntest_path_escape_refused (__main__.SetupTests.test_path_escape_refused) ... ok\ntest_symlink_refused (__main__.SetupTests.test_symlink_refused) ... ok\ntest_uninstall_refuses_foreign_host (__main__.SetupTests.test_uninstall_refuses_foreign_host) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.162s\n\nOK\n"
+          },
+          {
+            "cwd": "research-kit",
+            "command": "python3 scripts/test_kit.py",
+            "exit_code": 0,
+            "tests": 9,
+            "output_tail": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.003s\n\nOK\n"
+          }
+        ],
+        "paid_calls": 0,
+        "live_source_calls": 0,
+        "real_host_registration": false,
+        "python_network_guard": true,
+        "npm_registry_access": "dependency installation only"
+      }
+    },
+    {
+      "command": "python3 scripts/verify.py",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "{\n  \"ok\": true,\n  \"files_checked\": 22,\n  \"checks\": [\n    \"sha256\",\n    \"symlink/path containment\",\n    \"secret/PII patterns\",\n    \"relative Markdown links\"\n  ],\n  \"errors\": [],\n  \"network_calls\": 0\n}\n"
+    },
+    {
+      "command": "python3 scripts/replay.py --request fixtures/request.json --response fixtures/response.json --out replay-output.json",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "replay_validated\n"
+    },
+    {
+      "command": "python3 scripts/demo.py --out demo-output",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "Synthetic report saved; network_calls=0\n"
+    },
+    {
+      "command": "python3 scripts/test_kit.py",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.002s\n\nOK\n"
+    },
+    {
+      "command": "python3 research-capture/scripts/install.py --vault <TEMP>/sandbox/My Vault --home <TEMP>/sandbox/Home --chrome-profile-root <TEMP>/sandbox/Chrome Root --capture-subdir Inbox/Research",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "{\n  \"status\": \"planned\",\n  \"install_root\": \"/private<TEMP>/sandbox/Home/Library/Application Support/JevResearchCapture\",\n  \"native_manifest\": \"/private<TEMP>/sandbox/Chrome Root/NativeMessagingHosts/com.jev.research_capture.json\",\n  \"origin\": \"chrome-extension://jnmhkjbbjcobhdpjadndomemfihhihhk/\",\n  \"capture_root\": \"/private<TEMP>/sandbox/My Vault/Inbox/Research\",\n  \"extension\": \"/private<TEMP>/Jev-Research-System-Friend-Pack-1.0.0/research-capture/extension\",\n  \"downloads_root\": \"/private<TEMP>/sandbox/Home/Downloads\"\n}\n"
+    },
+    {
+      "command": "python3 research-capture/scripts/uninstall.py --home <TEMP>/sandbox/Home --chrome-profile-root <TEMP>/sandbox/Chrome Root",
+      "exit_code": 0,
+      "passed": true,
+      "output_tail": "{\n  \"companion\": \"/private<TEMP>/sandbox/Home/Library/Application Support/JevResearchCapture\",\n  \"registration\": \"/private<TEMP>/sandbox/Chrome Root/NativeMessagingHosts/com.jev.research_capture.json\",\n  \"backup\": \"/private<TEMP>/sandbox/Home/Library/Application Support/JevResearchCapture-disabled-20260922T104225215641\",\n  \"vault\": \"untouched\",\n  \"execute\": false\n}\n"
+    },
+    {
+      "check": "documented generic install/uninstall dry-run produced no registration or vault writes",
+      "passed": true
+    },
+    {
+      "command": "python3 tools/verify.py",
+      "exit_code": 1,
+      "passed": true,
+      "output_tail": "{\n  \"ok\": false,\n  \"files_checked\": 75,\n  \"errors\": [\n    \"research-kit/fixtures/ad-record.json: hash mismatch\"\n  ],\n  \"strict\": false,\n  \"network_calls\": 0\n}\n"
+    },
+    {
+      "command": "python3 scripts/verify.py",
+      "exit_code": 1,
+      "passed": true,
+      "output_tail": "{\n  \"ok\": false,\n  \"files_checked\": 22,\n  \"checks\": [\n    \"sha256\",\n    \"symlink/path containment\",\n    \"secret/PII patterns\",\n    \"relative Markdown links\"\n  ],\n  \"errors\": [\n    \"fixtures/ad-record.json: hash mismatch\"\n  ],\n  \"network_calls\": 0\n}\n"
+    },
+    {
+      "check": "modified synthetic evidence rejected by both top-level and kit integrity checks",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Offline/sandbox verification only; no friend-machine or real Chrome acceptance",
+    "npm registry/cache used for locked test dependencies; no source/model calls",
+    "Pattern scan is not an exhaustive security audit",
+    "Live installation, live source capture and paid model smoke remain untested"
+  ],
+  "public_upload": false,
+  "paid_api_calls": 0,
+  "real_native_registration": false,
+  "verification_scope": "Verified source payload excluding this receipt and the self-referential top-level manifest/checksum files. Final ZIP is independently reverified after embedding; its SHA-256 is supplied beside the ZIP."
+}

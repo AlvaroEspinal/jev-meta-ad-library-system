@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Research Capture \u2014 Local Evidence",
+  "version": "0.2.1",
+  "description": "Explicit Quick Download and Save to Obsidian. No ambient capture. Instagram external imports only.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiTvPkOlAhi6QDp0eEipSEJ5jHVxVqkCNMLXNKouXZTaP8OOxeP060nFphJLG43wT4Zvfic0w+mavaoJglqolev4FkOyolML50N6PWJZwNpcMUT27f5zDHYVOOp2n71w1GBC4ESnOtnQZZROhN38a+g+li+l+4saT+PwFzxWLh+VdjQp0jkF9z0pnjrQd1surZFDwh6xF9yjHg4Z5ZeX3f176bbQCObR+tYdiJUhDvVIkrw+1I3ZUFUTlzlWotMc4tu5jFhVzEy3RRkGcoOhMnqiMx+lBfJ2sukbCHwZz7b4eIVCyeRzc2PHVCIVf/jEuFc7T4g2vaK676iHT/Ud4FQIDAQAB",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "nativeMessaging",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Capture research evidence"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src 'none'; img-src 'self' data:; style-src 'self'"
+  },
+  "version_name": "0.2.1 friend distribution (capture base 0.2.0)"
+}
