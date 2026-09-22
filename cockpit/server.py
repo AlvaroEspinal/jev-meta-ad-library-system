@@ -10,6 +10,7 @@ import argparse
 import copy
 import hmac
 import json
+import math
 import os
 import secrets
 import threading
@@ -52,7 +53,15 @@ def _safe_detail(detail: object) -> dict:
         return {}
     if not isinstance(detail, dict):
         raise ValueError("detail must be an object")
-    encoded = json.dumps(detail, separators=(",", ":"), ensure_ascii=False)
+    def finite(value: object) -> bool:
+        if isinstance(value, float) and not math.isfinite(value):
+            return False
+        if isinstance(value, dict): return all(isinstance(key, str) and finite(item) for key, item in value.items())
+        if isinstance(value, list): return all(finite(item) for item in value)
+        return True
+    if not finite(detail):
+        raise ValueError("detail must not contain non-finite numbers")
+    encoded = json.dumps(detail, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
     if len(encoded.encode()) > 4096:
         raise ValueError("detail exceeds 4 KB")
     return detail
@@ -269,14 +278,21 @@ def make_handler(app: App, assets: Path):
             self.send_header("Cache-Control", "no-store")
             self.send_header("X-Content-Type-Options", "nosniff")
             self.send_header("X-Frame-Options", "DENY")
+            self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'")
+            self.send_header("Referrer-Policy", "no-referrer")
             self.end_headers()
             self.wfile.write(body)
         def json(self, status: int, value: object):
             self.send_bytes(status, json.dumps(value, ensure_ascii=False).encode())
         def same_host(self) -> bool:
             return self.headers.get("Host") == f"127.0.0.1:{self.server.server_port}"
+        def same_origin(self) -> bool:
+            origin = self.headers.get("Origin")
+            site = self.headers.get("Sec-Fetch-Site")
+            expected = f"http://127.0.0.1:{self.server.server_port}"
+            return (not origin or hmac.compare_digest(origin, expected)) and (not site or site in {"same-origin", "none"})
         def do_GET(self):
-            if not self.same_host(): return self.send_bytes(403, b"Forbidden", "text/plain")
+            if not self.same_host() or not self.same_origin(): return self.send_bytes(403, b"Forbidden", "text/plain")
             path = urlparse(self.path).path
             if path == "/api/state": return self.json(200, app.store.state())
             if path == "/api/events/stream":
@@ -305,7 +321,7 @@ def make_handler(app: App, assets: Path):
             try:
                 length = int(self.headers.get("Content-Length", "-1"))
                 if not 0 <= length <= MAX_BODY: raise ValueError("request body too large")
-                event = validate_event(json.loads(self.rfile.read(length)))
+                event = validate_event(json.loads(self.rfile.read(length), parse_constant=lambda value: (_ for _ in ()).throw(ValueError(f"non-finite JSON constant: {value}"))))
                 state, accepted = app.store.add(event)
                 self.json(202 if accepted else 200, {"accepted": accepted, "revision": state["revision"]})
             except (ValueError, json.JSONDecodeError) as exc:

@@ -6,10 +6,10 @@ A local, loopback-only observer for receipts sent by the included browser runner
 
 ```bash
 export JEV_COCKPIT_TOKEN="$(python3 cockpit/server.py --print-token)"
-python3 cockpit/server.py --port 8766
+python3 cockpit/server.py --port 8877
 ```
 
-Open `http://127.0.0.1:8766`. Keep the token private. The server binds only to `127.0.0.1`; it rejects requests whose Host header is not the exact local address and port.
+Open `http://127.0.0.1:8877`. Keep the token private. The server binds only to `127.0.0.1`; it rejects requests whose Host header is not the exact local address and port.
 
 Set `JEV_COCKPIT_DATA` to choose another local history path. History is atomic and retained across restarts; delete the JSON file yourself only if you intentionally want to erase it.
 
@@ -18,7 +18,7 @@ Set `JEV_COCKPIT_DATA` to choose another local history path. History is atomic a
 Configure your browser-runner agent with:
 
 ```text
-Cockpit URL: http://127.0.0.1:8766/api/events
+Cockpit URL: http://127.0.0.1:8877/api/events
 Authorization: Bearer <JEV_COCKPIT_TOKEN>
 ```
 
@@ -34,7 +34,7 @@ Allowed `type` values: `run_started`, `worker_started`, `observation`, `zero_ads
 
 ## Safe agent connection prompt
 
-> Configure the browser runner to send only schema-valid, observed status receipts to the local Jev Friend Cockpit. Read `JEV_COCKPIT_TOKEN` only from its process environment; never store, log, or send it anywhere else. POST only to `http://127.0.0.1:8766/api/events` with `Authorization: Bearer <token>`. Do not use the cockpit to issue browser actions. For each worker, send increasing `seq` values and distinguish `zero_ads`, `source_blocked`, and `worker_failed`. Mark synthetic fixtures with `detail.fixture: true`.
+> Configure the browser runner to send only schema-valid, observed status receipts to the local Jev Friend Cockpit. Read `JEV_COCKPIT_TOKEN` only from its process environment; never store, log, or send it anywhere else. POST only to `http://127.0.0.1:8877/api/events` with `Authorization: Bearer <token>`. Do not use the cockpit to issue browser actions. For each worker, send increasing `seq` values and distinguish `zero_ads`, `source_blocked`, and `worker_failed`. Mark synthetic fixtures with `detail.fixture: true`.
 
 ## Test
 
