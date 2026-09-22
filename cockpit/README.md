@@ -1,6 +1,6 @@
 # Jev Friend Cockpit
 
-A local, loopback-only observer for receipts sent by the included browser runner. It shows up to ten concurrent workers, updates in real time through SSE (then polling fallback), and retains cumulative history in a local JSON file. It **does not scrape, navigate, control a browser, call Jev, or assert that observed ads are effective**.
+A local, loopback-only observer for receipts sent by the included browser runner. It shows up to ten concurrent workers, updates in real time through SSE (then polling fallback), and retains cumulative history in a local JSON file. The cumulative visible-ID observation total can include the same ad again when a later run observes it; it is not a de-duplicated industry inventory. It **does not scrape, navigate, control a browser, call Jev, or assert that observed ads are effective**.
 
 ## Start it
 
@@ -30,7 +30,7 @@ Send one JSON receipt per observed runner transition (max 32 KB):
 
 Allowed `type` values: `run_started`, `worker_started`, `observation`, `zero_ads`, `source_blocked`, `worker_complete`, `worker_failed`, `run_complete`.
 
-`seq` must strictly increase per `{run_id, worker_id}`. Duplicate/out-of-order receipts are acknowledged but do not mutate history. `ads` is rendered only as the latest **observed** count supplied by the runner, never an estimate. A `zero_ads` receipt is distinct from `source_blocked`. Set `detail.fixture: true` for synthetic test events; the UI labels that data as synthetic.
+`seq` must strictly increase per `{run_id, worker_id}`. Duplicate/out-of-order receipts are acknowledged but do not mutate history. `ads` is rendered only as the latest **observed visible-ID count** supplied by the runner, never an estimate. Cumulative totals intentionally retain repeated observations across runs; they do not claim unique ads unless a runner supplies independent de-duplication evidence. A `zero_ads` receipt is distinct from `source_blocked`. Set `detail.fixture: true` for synthetic test events; the UI labels that data as synthetic.
 
 ## Safe agent connection prompt
 

@@ -237,9 +237,12 @@ class Store:
                 "status": run.get("status"), "synthetic": bool(run.get("synthetic")), "workers": workers,
                 "summary": {"workers": len(jobs), "observed_ads": observed, **dict(status)},
             })
+        totals["visible_id_observations"] = totals["observed_ads"]
+        synthetic_totals["visible_id_observations"] = synthetic_totals["observed_ads"]
         return {
             "schema": 1, "revision": self.data["revision"], "server_time": now(), "history_file": str(self.path),
-            # Fixture/replay receipts are deliberately excluded from production totals.
+            # `observed_ads` is retained for client compatibility. It is a sum of supplied
+            # visible-ID observations, not a global de-duplicated inventory across reruns.
             "totals": dict(totals), "synthetic_totals": dict(synthetic_totals), "runs": output, "active_run": output[0] if output else None,
             "limits": {"max_event_bytes": MAX_BODY, "max_event_log_per_run": MAX_EVENTS_PER_RUN},
         }
