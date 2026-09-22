@@ -45,4 +45,4 @@ Open `http://127.0.0.1:8877`. The replay is conspicuously labeled synthetic and 
 
 The browser-use/Jev approach builds on the MIT-licensed [Browser Use Jev Ultrafast](https://github.com/browser-use/jev-ultrafast) project; retain its copyright notice for any copied source. The pack's exact pinned source versions and verification receipt are in [`research-pack/VERSION.json`](research-pack/VERSION.json) and [`research-pack/VERIFICATION-RECEIPT.json`](research-pack/VERIFICATION-RECEIPT.json). See [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) for attribution and dependency boundaries.
 
-Original code in this private repository is offered to invited collaborators under [`LICENSE`](LICENSE); Browser Use-derived files retain their separate MIT notice. This is not a public/open-source release unless the owner chooses to relicense it.
+Original code in this private repository is offered to invited collaborators or direct owner-provided copy recipients under [`LICENSE`](LICENSE); Browser Use-derived files retain their separate MIT notice. This is not a public/open-source release unless the owner chooses to relicense it.
