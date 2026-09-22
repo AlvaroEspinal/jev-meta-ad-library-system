@@ -12,7 +12,7 @@ The cockpit receives structured events from the runner; it does **not** control 
 
 Hand [`SETUP-FOR-YOUR-AGENT.md`](SETUP-FOR-YOUR-AGENT.md) to your own coding agent. It tells the agent how to inspect, install and verify this repository **on your computer**, and where to ask you for your own credentials, browser access, vault and public targets. Never send secrets into a chat or commit them to this repo.
 
-**Offline acceptance first:** `research-pack` ships its own strict hash and cold-fixture verification tools. The cockpit and runner also provide synthetic ten-worker tests; run them before connecting to a live source. The live browser path, provider availability, paid usage and a recipient-machine Chrome/native-host installation require separate approval and readback.
+**Offline acceptance first:** `research-pack` ships its own strict hash and cold-fixture verification tools. The cockpit and runner also provide synthetic ten-worker tests; run them before connecting to a live source. The runner uses **fresh Browser Use Cloud sessions only**, never local Chrome. Live cloud access, provider availability and paid usage require separate approval and readback. Installing the optional Research Capture extension/native host is a different approval and is not needed for the runner-to-cockpit connection.
 
 From a clean clone, run the no-account acceptance check:
 
@@ -20,16 +20,17 @@ From a clean clone, run the no-account acceptance check:
 python3 tools/check_distribution.py
 ```
 
-It starts a temporary loopback cockpit, replays ten **synthetic** worker receipts, checks the blocked and zero-ad lanes, restarts the cockpit to verify retained history, and verifies the pinned research pack. It makes no browser or paid-model calls. To view the synthetic dashboard yourself in a separate terminal:
+It starts a temporary loopback cockpit, replays ten **synthetic** worker receipts, checks the blocked and zero-ad lanes, restarts the cockpit to verify retained history, and verifies the pinned research pack. It makes no browser or paid-model calls. To view the synthetic dashboard yourself, keep the same terminal open:
 
 ```sh
 export JEV_COCKPIT_TOKEN="$(python3 cockpit/server.py --print-token)"
-python3 cockpit/server.py --port 8877
-# In another terminal in this folder, with the same token in its environment:
-python3 -m browser_runner.replay --cockpit-port 8877 --cockpit-token "$JEV_COCKPIT_TOKEN"
+python3 cockpit/server.py --port 8877 &
+COCKPIT_PID=$!
+sleep 1
+python3 -m browser_runner.replay --cockpit-port 8877
 ```
 
-Open `http://127.0.0.1:8877`. The replay is conspicuously labeled synthetic and is excluded from real cumulative totals. For real setup, follow [`browser_runner/README.md`](browser_runner/README.md) and [`cockpit/README.md`](cockpit/README.md); nothing in this quick start authenticates a provider or visits Meta.
+Open `http://127.0.0.1:8877`. The replay is conspicuously labeled synthetic and is excluded from real cumulative totals. When finished, run `kill "$COCKPIT_PID"` in that same terminal to stop only the cockpit process started above. For real setup, follow [`browser_runner/README.md`](browser_runner/README.md) and [`cockpit/README.md`](cockpit/README.md); nothing in this quick start authenticates a provider or visits Meta.
 
 ## Boundaries
 
