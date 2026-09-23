@@ -1,4 +1,4 @@
-# Jev Friend Cockpit
+# Jev Meta Ad Library System Cockpit
 
 A local, loopback-only observer for receipts sent by the included browser runner. It shows up to ten concurrent workers, updates in real time through SSE (then polling fallback), and retains cumulative history in a local JSON file. The cumulative visible-ID observation total can include the same ad again when a later run observes it; it is not a de-duplicated industry inventory. It **does not scrape, navigate, control a browser, call Jev, or assert that observed ads are effective**.
 
@@ -34,7 +34,7 @@ Allowed `type` values: `run_started`, `worker_started`, `observation`, `zero_ads
 
 ## Safe agent connection prompt
 
-> Configure the browser runner to send only schema-valid, observed status receipts to the local Jev Friend Cockpit. Read `JEV_COCKPIT_TOKEN` only from its process environment; never store, log, or send it anywhere else. POST only to `http://127.0.0.1:8877/api/events` with `Authorization: Bearer <token>`. Do not use the cockpit to issue browser actions. For each worker, send increasing `seq` values and distinguish `zero_ads`, `source_blocked`, and `worker_failed`. Mark synthetic fixtures with `detail.fixture: true`.
+> Configure the browser runner to send only schema-valid, observed status receipts to the local Jev Meta Ad Library System cockpit. Read `JEV_COCKPIT_TOKEN` only from its process environment; never store, log, or send it anywhere else. POST only to `http://127.0.0.1:8877/api/events` with `Authorization: Bearer <token>`. Do not use the cockpit to issue browser actions. For each worker, send increasing `seq` values and distinguish `zero_ads`, `source_blocked`, and `worker_failed`. Mark synthetic fixtures with `detail.fixture: true`.
 
 ## Test
 

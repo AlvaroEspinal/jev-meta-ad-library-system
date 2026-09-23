@@ -1,10 +1,12 @@
-# Jev Research System — friend edition
+# Jev Meta Ad Library System
 
 This repository brings together three **separate** local components:
 
 1. `browser_runner/` — an opt-in Browser Use cloud observer for recipient-supplied public advertiser targets, with optional bounded Jev evidence review. It sends observed progress to the cockpit automatically.
 2. `cockpit/` — a loopback-only, authenticated live view for up to ten worker lanes and durable run history.
 3. `research-pack/` — the separately verified Research Capture extension and portable marketing/decision kit. Start at [`research-pack/START-HERE.md`](research-pack/START-HERE.md).
+
+`research-pack/` keeps its original internal package name and version so its pinned checksums remain valid.
 
 The cockpit receives structured events from the runner; it does **not** control a browser or claim that visible ads are a complete Meta Ad Library census. This is a research prototype and demonstration framework, not a production scraper, local Jev model, ad publisher, or access to the sender's accounts. The capture extension is a separate reviewed workflow, not a background collector. Read [`SECURITY.md`](SECURITY.md) before any live use.
 
